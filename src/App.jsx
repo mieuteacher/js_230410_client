@@ -2,7 +2,7 @@ import './main.scss'
 function App() {
   return (
     <div className="App">
-      hello em la nhanh build adasdasdasa tinh nang nhanh a
+      hello em la nhanh build ket hop a va c
     </div>
   );
 }
