@@ -1,20 +1,16 @@
 import {useState, useEffect} from 'react';
 import './main.scss'
+import {Routes} from 'react-router-dom';
 
-import {useSelector, useDispatch} from 'react-redux';
-import { userActions } from './stores/slices/user';
-
+import ExampleRouteConfig from './pages/examples/route.config';
 function App() {
-  const dispatch = useDispatch();
 
-  const userStore = useSelector(store => store.userStore);
-
-  useEffect(() => {
-    dispatch(userActions.find());
-  }, [])
   return (
     <div className="App">
-
+      <Routes>
+          {/* Exemple Routing */}
+          {ExampleRouteConfig}
+      </Routes>
     </div>
   );
 }
