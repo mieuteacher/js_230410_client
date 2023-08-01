@@ -14,22 +14,7 @@ function App() {
   }, [])
   return (
     <div className="App">
-      <button onClick={() => {
-        dispatch(userActions.changeLoad())
-      }}>Change Load</button>
-      <ul>
-        {
-          userStore.data.map((user, index) => (
-            <li key={user.id}>
-              <div>
-                User Email: {user.email}
-              </div>
-              <img style={{width: "100px", height: "100px", borderRadius: "50%"}} 
-              src={`${process.env.REACT_APP_SERVER_HOST}${user.avatar}`}/>
-            </li>
-          ))
-        }
-      </ul>
+
     </div>
   );
 }
