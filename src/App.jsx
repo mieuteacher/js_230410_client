@@ -1,82 +1,42 @@
 import "./main.scss";
 import { Routes } from "react-router-dom";
 import ExampleRouteConfig from "./pages/examples/route.config";
+import { useState } from 'react';
 
-/* Antd */
-import { AutoComplete, Input } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
-
+import Navbar from '@components/Navbar'
+import Footer from '@components/Footer'
 function App() {
-  const renderTitle = (title) => (
-    <span>
-      {title}
-      <a
-        style={{
-          float: 'right',
-        }}
-        href="https://www.google.com/search?q=antd"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        more
-      </a>
-    </span>
-  );
-
-  const renderItem = (title, count) => ({
-    value: title,
-    label: (
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-        }}
-      >
-        {title}
-        <span>
-          <UserOutlined /> {count}
-        </span>
-      </div>
-    ),
-  });
-
-  const options = [
-    {
-      label: renderTitle('Libraries'),
-      options: [renderItem('AntDesign', 10000), renderItem('AntDesign UI', 10600)],
-    },
-    {
-      label: renderTitle('Solutions'),
-      options: [renderItem('AntDesign UI FAQ', 60100), renderItem('AntDesign FAQ', 30010)],
-    },
-    {
-      label: renderTitle('Articles'),
-      options: [renderItem('AntDesign design language', 100000)],
-    },
-  ];
+  const [feature, setFeature] = useState([
+    "Find a Store", "Help", "Join Us", "Sign In"
+  ])
   return (
     <div className="root_page">
-      {/* Navbar */}
-      <nav>
-        <div className="nav_content">
-          <div className="left_content">
-            {/* Logo */}
-            <img src={`${process.env.REACT_APP_SERVER_HOST}logo1.png`} className="logo"/>
-          </div>
-          <div className="middle_content">
-
-          </div>
-          <div className="right_content">
-      
+      {/* Before Nav */}
+      <section className="before_nav">
+        <div className="before_nav_content">
+          <h1 className="brand_name">JS_230410_CLIENT</h1>
+          <div className="feature">
+              {
+                feature.map((item, index) => (
+                  <span className="feature_item" key={Date.now() * Math.random()}>{item}</span>
+                ))
+              }
           </div>
         </div>
-      </nav>
+      </section>
+      {/* Navbar */}
+      <Navbar/>
       {/* Body */}
-      <Routes>
-        {/* Exemple Routing */}
-        {ExampleRouteConfig}
-      </Routes>
-      {/* Footer 8770199 3 22 23 */}
+      <section className="body_container">
+        <div className="body_container_center">
+          <Routes>
+            {/* Exemple Routing */}
+            {ExampleRouteConfig}
+          </Routes>
+        </div>
+      </section>
+      {/* Footer */}
+      <Footer/>
     </div>
   );
 }
