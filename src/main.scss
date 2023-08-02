@@ -3,10 +3,63 @@
   padding: 0;
   border: 0;
   font-size: 100%;
+  box-sizing: border-box
 }
 
 @import "@scss";
 
-h1 {
-  color: $cl_main;
+.root_page {
+  width: 100%;
+  font-size: $fs_medium;
+  nav {
+    width: 100%;
+    height: $navH;
+    font-size: 1em;
+    background-color: $cl_nav_main;
+    display: flex;
+    justify-content: center;
+    .nav_content {
+      width: 100%;
+      max-width: $maxW;
+      height: 100%;
+      font-size: 1em;
+      .left_content {
+        display: flex;
+        align-items: center;
+        width: 40%;
+        justify-content: space-between;
+        font-size: 1em;
+        height: 100%;
+        .logo {
+          width: 83px;
+          height: 100%;
+        }
+        // .ant-select-auto-complete {
+        //   width: 450px !important;
+        //   font-size: 1em;
+        //   .ant-input {
+        //     font-size: 1.2em;
+        //   }
+        // }
+      }
+
+    }
+  }
 }
+
+/*
+  .left_content {
+    display: flex;
+    align-items: center;
+    width: 320px;
+    justify-content: space-between;
+    .logo {
+      width: 83px;
+      height: 100%;
+    }
+    .ant-select-auto-complete {
+      width: 215px !important;
+    }
+  }
+
+*/
