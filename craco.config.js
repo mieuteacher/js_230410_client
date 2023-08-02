@@ -10,7 +10,7 @@ module.exports = {
       '@services': path.resolve(__dirname, 'src/services'),
       '@pages': path.resolve(__dirname, 'src/pages'),
       '@scss': path.resolve(__dirname, 'src/scss/index.scss'),
-      '@api': path.resolve(__dirname, 'src/services/api/index.js'),
+      '@api': path.resolve(__dirname, 'src/services/api'),
       '@actions': path.resolve(__dirname, 'src/stores/slices')
     }
   },

@@ -1,11 +1,18 @@
 import "./main.scss";
 import { Routes } from "react-router-dom";
-import ExampleRouteConfig from "./pages/examples/route.config";
 import { useState } from 'react';
 
 import Navbar from '@components/Navbar'
 import Footer from '@components/Footer'
+
+import { useTranslation } from "react-i18next";
+
+/* Route Config */
+import ExampleRouteConfig from "./pages/examples/route.config";
+import AuthRouteConfig from "@pages/auths/Route";
+
 function App() {
+  const { t } = useTranslation();
   const [feature, setFeature] = useState([
     "Find a Store", "Help", "Join Us", "Sign In"
   ])
@@ -14,7 +21,7 @@ function App() {
       {/* Before Nav */}
       <section className="before_nav">
         <div className="before_nav_content">
-          <h1 className="brand_name">JS_230410_CLIENT</h1>
+          <h1 className="brand_name">JS_230410_CLIENT {t("hello")}  -  {t("about")}</h1>
           <div className="feature">
               {
                 feature.map((item, index) => (
@@ -32,6 +39,8 @@ function App() {
           <Routes>
             {/* Exemple Routing */}
             {ExampleRouteConfig}
+            {/* Auth Routing */}
+            {AuthRouteConfig}
           </Routes>
         </div>
       </section>
