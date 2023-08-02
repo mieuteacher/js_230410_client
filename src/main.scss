@@ -1,13 +1,12 @@
-*{ 
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
 }
 
-@import '@scss';
+@import "@scss";
 
 h1 {
-    color: $cl_main;
+  color: $cl_main;
 }
-  

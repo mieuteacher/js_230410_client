@@ -1,64 +1,61 @@
-import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-import api from '../../services/api'
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import api from "../../services/api";
 
-const find = createAsyncThunk(
-    '/find',
-    async () => {
-        let result = await api.users.find();
-        return result.data
-    }
-)
+const find = createAsyncThunk("/find", async () => {
+  let result = await api.users.find();
+  return result.data;
+});
 
 const userSlice = createSlice({
-    name: "user",
-    initialState: {
-        loading: true,
-        data: []
+  name: "user",
+  initialState: {
+    loading: true,
+    data: [],
+  },
+  reducers: {
+    changeLoad: (state, action) => {
+      return {
+        ...state,
+        load: !state.load,
+      };
     },
-    reducers: {
-        changeLoad: (state, action) => {
-            return {
-                ...state,
-                load: !state.load
-            }
+  },
+  extraReducers: (builder) => {
+    builder.addCase(find.fulfilled, (state, action) => {
+      state.data = [...action.payload.data];
+    });
+    builder.addMatcher(
+      (action) => {
+        if (action.meta) {
+          return action;
         }
-    },
-    extraReducers: (builder) => {
-        builder.addCase(find.fulfilled, (state, action) => {
-            state.data = [...action.payload.data]
-        });
-        builder.addMatcher(
-            (action) => {
-                if (action.meta) {
-                    return action
-                }
-            },
-            (state, action) => {
-                if (action.meta) {
-                    if (action.meta.requestStatus == "pending") {
-                        //console.log("đã vào pending của api: ", action.type)
-                        // if (action.type == "deleteUserByid/pending") {
-                        //     console.log("trường hợp pending của api delete")
-                        // }
-                        state.loading = true;
-                    }
-                    if (action.meta.requestStatus == "rejected") {
-                        //console.log("đã vào rejected của api: ", action.type)
-                        state.loading = false;
-                    }
-                    if (action.meta.requestStatus == "fulfilled") {
-                        //console.log("đã vào fulfilled của api: ", action.type)
-                        state.loading = false;
-                    }
-                }
-            }
-        );
-    }
-})
+      },
+      (state, action) => {
+        if (action.meta) {
+          if (action.meta.requestStatus == "pending") {
+            //console.log("đã vào pending của api: ", action.type)
+            // if (action.type == "deleteUserByid/pending") {
+            //     console.log("trường hợp pending của api delete")
+            // }
+            state.loading = true;
+          }
+          if (action.meta.requestStatus == "rejected") {
+            //console.log("đã vào rejected của api: ", action.type)
+            state.loading = false;
+          }
+          if (action.meta.requestStatus == "fulfilled") {
+            //console.log("đã vào fulfilled của api: ", action.type)
+            state.loading = false;
+          }
+        }
+      },
+    );
+  },
+});
 
 export const userActions = {
-    ...userSlice.actions,
-    find
-}
+  ...userSlice.actions,
+  find,
+};
 
 export const userReducer = userSlice.reducer;
