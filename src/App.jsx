@@ -7,6 +7,7 @@ function App() {
 
   return (
     <div className="App">
+      <h1>Hello JS230410</h1>
       <Routes>
           {/* Exemple Routing */}
           {ExampleRouteConfig}

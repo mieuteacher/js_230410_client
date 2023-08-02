@@ -4,4 +4,10 @@
     border: 0;
     font-size: 100%;
 }
+
+@import '@scss';
+
+h1 {
+    color: $cl_main;
+}
   
