@@ -9,16 +9,26 @@ export default function Register() {
         e.preventDefault();
 
         let newUser = {
+          user_name: e.target.user_name.value,
           email: e.target.email.value,
           first_name: e.target.first_name.value,
           last_name: e.target.last_name.value,
           password: e.target.password.value,
         }
+
+
+          let result = await api.users.register(newUser)
+
+          if (result.status != 200) {
+            alert(result.response.data.message)
+          }else {
+            alert(result.data != undefined ? result.data.message : result.message)
+          }
         
-        let result = await api.users.register(newUser)
-        console.log("result", result)
 
       }}>
+          User Name <input type="text" name='user_name'/>
+          <br></br>
           Email <input type="text" name='email'/>
           <br></br>
           First name <input type="text" name='first_name'/>
