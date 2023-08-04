@@ -6,11 +6,20 @@ const find = createAsyncThunk("/find", async () => {
   return result.data;
 });
 
+const authenToken = createAsyncThunk("/authen-token", async () => {
+  let result = await api.users.authenToken(
+    {
+      token: localStorage.getItem('token')
+    }
+  );
+  return result.data;
+});
+
 const userSlice = createSlice({
   name: "user",
   initialState: {
     loading: true,
-    data: [],
+    data: null,
   },
   reducers: {
     changeLoad: (state, action) => {
@@ -23,6 +32,13 @@ const userSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(find.fulfilled, (state, action) => {
       state.data = [...action.payload.data];
+    });
+    builder.addCase(authenToken.fulfilled, (state, action) => {
+      if(action.payload) {
+        state.data = action.payload.data;
+      }else {
+        localStorage.removeItem("token");
+      }
     });
     builder.addMatcher(
       (action) => {
@@ -56,6 +72,7 @@ const userSlice = createSlice({
 export const userActions = {
   ...userSlice.actions,
   find,
+  authenToken
 };
 
 export const userReducer = userSlice.reducer;

@@ -11,7 +11,8 @@ module.exports = {
       '@pages': path.resolve(__dirname, 'src/pages'),
       '@scss': path.resolve(__dirname, 'src/scss/index.scss'),
       '@api': path.resolve(__dirname, 'src/services/api'),
-      '@actions': path.resolve(__dirname, 'src/stores/slices')
+      '@actions': path.resolve(__dirname, 'src/stores/slices'),
+      '@utils': path.resolve(__dirname, 'src/utils')
     }
   },
 };
